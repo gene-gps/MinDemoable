@@ -1,0 +1,15 @@
+[Unit]
+Description=MDPApp Concierge App
+
+[Service]
+WorkingDirectory=/home/ubuntu/GloProxSys.MDPApp.Concierge/
+ExecStart=/usr/bin/dotnet /home/ubuntu/GloProxSys.MDPApp.Concierge/GloProxSys.MDPApp.Concierge.dll
+Restart=always
+# Restart service after 10 seconds if dotnet service crashes
+RestartSec=10
+SyslogIdentifier=GloProxSys.MDPApp.Concierge
+User=www-data
+Environment=ASPNETCORE_ENVIRONMENT=Production 
+
+[Install]
+WantedBy=multi-user.target

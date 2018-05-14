@@ -1,0 +1,9 @@
+#!/bin/bash
+cd /home/ubuntu/
+
+# use systemd to start and monitor dotnet application
+systemctl enable kestrel-GloProxSys.MDPApp.Concierge.service
+systemctl start kestrel-GloProxSys.MDPApp.Concierge.service
+
+# start apache
+systemctl restart apache2.service
