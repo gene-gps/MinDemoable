@@ -1,0 +1,166 @@
+body {
+  min-height: 75rem;
+  padding-top: 4.5rem;
+  padding-bottom: 2rem;
+  font-size: .8rem; }
+
+/* Navbar  */
+.navbar-brand {
+  x-padding-top: 3.75rem;
+  x-padding-bottom: .75rem;
+  font-size: 1rem; }
+  .navbar-brand img {
+    width: 100%; }
+
+.navbar-text.host-name {
+  margin-left: 100px;
+  color: whitesmoke;
+  font-size: 2em; }
+
+.navbar {
+  height: 60px; }
+
+.navbar .right-block {
+  position: absolute;
+  right: 20px; }
+
+.border-top {
+  border-top: 1px solid #e5e5e5; }
+
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5; }
+
+/* Staff Header */
+.staff-header {
+  height: 2.5rem;
+  text-align: right;
+  border-bottom: 1px solid lightgrey; }
+
+.player-lists ul.nav {
+  margin: 4px 0px; }
+
+.player-lists a.nav-link {
+  color: #343a40; }
+
+.player-lists a.nav-link:hover {
+  background-color: rgba(52, 58, 64, 0.4);
+  color: whitesmoke; }
+
+.player-lists a.nav-link.active {
+  background-color: #343a40;
+  color: whitesmoke; }
+
+/*.player-lists h4 {margin-top:3.5rem;}*/
+.player-list {
+  min-height: 100px;
+  border: 1px solid lightgrey;
+  margin-bottom: 30px; }
+  .player-list .player {
+    margin: 8px 0px;
+    border-bottom: 1px solid lightgrey; }
+    .player-list .player h7 {
+      margin-bottom: 2px;
+      font-weight: bold;
+      font-size: .9em; }
+    .player-list .player h5.title {
+      margin-bottom: 2px;
+      border-bottom: 1px solid lightgrey; }
+    .player-list .player ul.details {
+      list-style-type: none;
+      padding-left: 0px;
+      margin-bottom: 0px; }
+      .player-list .player ul.details li {
+        margin-bottom: 0px; }
+      .player-list .player ul.details li label {
+        font-weight: bold;
+        margin-bottom: 0px; }
+    .player-list .player .icons {
+      text-align: center;
+      padding-left: 5px;
+      padding-right: 5px; }
+      .player-list .player .icons > h5.jackpot {
+        height: 25px; }
+    .player-list .player .icon-bar {
+      width: 100%;
+      font-size: 1rem; }
+      .player-list .player .icon-bar ul {
+        width: 100%;
+        padding-right: 0px;
+        margin-right: 0px; }
+      .player-list .player .icon-bar li.del-watch {
+        display: none; }
+      .player-list .player .icon-bar .tier {
+        vertical-align: top;
+        padding-top: 18px;
+        padding-left: 20px;
+        font-size: .9em; }
+  .player-list .player:last-of-type {
+    margin-bottom: 0px;
+    border-bottom: none; }
+
+.player-list.watching .icon-bar li.add-watch {
+  display: none !important; }
+
+.player-list.watching .icon-bar li.del-watch {
+  display: list-item !important; }
+
+.message-list {
+  min-height: 100px;
+  border-left: 1px solid lightgrey; }
+  .message-list h6 {
+    border-bottom: 1px solid dimgrey; }
+
+#profile .modal-header {
+  border-bottom: 1px solid lightgrey; }
+
+#profile .photo {
+  padding-right: 0px; }
+
+#profile ul {
+  padding: 0px;
+  list-style-type: none;
+  margin-bottom: 0px; }
+
+#profile li label {
+  padding: 0px 2px 0px 0px;
+  font-weight: bold; }
+
+#profile .notes {
+  margin-top: 2rem; }
+  #profile .notes h6 {
+    width: 100%;
+    border-bottom: 1px solid lightgrey; }
+  #profile .notes .add-note {
+    width: 100%;
+    margin-top: 1rem; }
+  #profile .notes #add-note-content {
+    width: 100%;
+    min-height: 3rem; }
+  #profile .notes .add-buttons {
+    text-align: right; }
+
+#profile #note-list {
+  max-height: 200px;
+  overflow-y: auto;
+  border-bottom: 1px solid lightgrey; }
+
+#profile li.note {
+  padding-bottom: 8px; }
+  #profile li.note h7 {
+    width: 100%;
+    border-bottom: 1px solid #dedede;
+    font-weight: bold; }
+
+.staff-header .btn-group-sm > .btn, .staff-header .btn-sm {
+  font-size: .675rem; }
+
+.staff-header .btn-outline-secondary:not(:disabled):not(.disabled).active, .staff-header .btn-outline-secondary:not(:disabled):not(.disabled):active, .staff-header .show > .btn-outline-secondary.dropdown-toggle {
+  background-color: cadetblue;
+  border-color: darkslategray;
+  color: white; }
+
+.navbar.navbar-dark.bg-dark {
+  background-color: darkblue !important; }
+
+.navbar.navbar-dark .navbar-brand {
+  color: whitesmoke; }

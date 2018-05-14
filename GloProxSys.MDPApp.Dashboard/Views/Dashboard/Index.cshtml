@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+
+<style>
+
+</style>
+
+<div class="row">
+    <div class="col-lg-6">
+        <h4>Players Registered</h4>
+        <canvas id="chart1"></canvas>
+    </div>
+    <div class="col-lg-6">
+        <h4>Mobile Offers</h4>
+        <canvas id="chart2"></canvas>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var myBarChart = new Chart('chart1', {
+            type: 'horizontalBar',
+            data: {
+                labels: ['Tier 1', 'Tier 2', 'Tier 3', 'Tier 4', 'Tier 5', 'Tier 6', 'Tier 7', 'Tier 8'],
+                datasets: [{
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                    data: [90, 60, 93, 57, 81, 34, 92, 35]
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        scaleLabel: {
+                            display:true,
+                            labelString: 'Percentage Using App'
+                        },
+                        ticks: {
+                            min: 0,
+                            max: 100,
+                            callback: function (value, index, values) {
+                                return value + '%';
+                            }
+                        }
+                    }]
+                },
+                legend: { display: false },
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            return tooltipItem.xLabel + '%';
+                        }
+                    }
+                }
+            }
+        });
+
+        var myBarChart = new Chart('chart2', {
+            type: 'line',
+            data: {
+                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul'],
+                datasets: [
+                    {
+                        label: 'Redeemed',
+                        backgroundColor: '#8e5ea2',
+                        borderColor: '#8e5ea2',
+                        borderWidth: 2,
+                        //lineTension: 0,
+                        fill:false,
+                        data: [50, 30, 83, 22, 53, 22, 45, 55, 72, 55, 68]
+                    },
+                    {
+                        label: 'Viewed',
+                        backgroundColor: '#3e95cd',
+                        borderColor: '#3e95cd', 
+                        borderWidth: 2,
+                        //lineTension: 0,
+                        fill: false,
+                        data: [90, 60, 93, 57, 81, 34, 92, 65, 88, 80, 72]
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Percentage of Players'
+                        },
+                        ticks: {
+                            min: 0,
+                            max: 100,
+                            callback: function (value, index, values) {
+                                return value + '%';
+                            }
+                        }
+                    }]
+                },
+                legend: {
+                    position:'right',
+
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            return tooltipItem.yLabel + '%';
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>

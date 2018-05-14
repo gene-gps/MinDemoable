@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewData["Title"] = "Offer List";
+}
+
+<style>
+    table.table td, table.table th {
+        font-size: .9em;
+    }
+
+    td.date {
+        width: 100px;
+    }
+
+    td.bar {
+        width: 45%;
+    }
+
+        td.bar .bar-container {
+            height: 13px;
+            margin: 4px 0px;
+            width: 100%;
+            background-color: lightgrey;
+        }
+
+            td.bar .bar-container div.bar {
+                height: 100%;
+                background-color: #daa520;
+                border-right: 1px solid black;
+            }
+
+    .offer-list {
+        margin-top: 2rem;
+    }
+
+        .offer-list td.icon a, .offer-list td.name a {
+            cursor: pointer;
+        }
+
+            .offer-list td.icon a:hover, .offer-list td.name a:hover {
+                color: darkgreen;
+            }
+
+</style>
+<div class="row button-bar">
+
+</div>
+<div class="row offer-list">
+    <div class="col">
+        <h4>Offer Redemption</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="icon">&nbsp;</th>
+                    <th class="name">Offer</th>
+                    <th class="date">Start</th>
+                    <th class="date">End</th>
+                    <th class="rate">Rate</th>
+                    <th class="bar">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="icon"><a class=""><i class="fa fa-money"></i></a></td>
+                    <td class="name"><a class="">MB T1 100FP April 2018</a></td>
+                    <td class="date">4/1/2018</td>
+                    <td class="date">4/30/2018</td>
+                    <td class="rate">65%</td>
+                    <td class="bar">
+                        <div class="bar-container">
+                            <div class="bar" style="width:65%;"></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

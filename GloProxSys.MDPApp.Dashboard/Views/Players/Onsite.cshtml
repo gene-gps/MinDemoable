@@ -1,0 +1,82 @@
+﻿@model OnsitePlayerModel
+@{
+    ViewData["Title"] = "Onsite Players";
+}
+<style>
+    .table .amt {
+        text-align: right;
+        padding-right: 15px;
+    }
+
+    /*tr.level-1 td {
+        background-color: rgb(255, 0, 0, .25);
+    }
+*/
+    tr.tier-8 td {
+        background-color: rgb(255, 247, 236, .25);
+    }
+
+    tr.tier-7 td {
+        background-color: rgb(254, 232, 200, .25);
+    }
+
+    tr.tier-6 td {
+        background-color: rgb(253, 212, 158, .25);
+    }
+
+    tr.tier-5 td {
+        background-color: rgb(253, 187, 132, .25);
+    }
+
+    tr.tier-4 td {
+        background-color: rgb(252, 141, 89, .25);
+    }
+
+    tr.tier-3 td {
+        background-color: rgb(239, 101, 72, .25);
+    }
+
+    tr.tier-2 td {
+        background-color: rgb(215, 48, 31, .25);
+    }
+
+    tr.tier-1 td {
+        background-color: rgb(153, 0, 0, .25);
+    }
+
+    
+
+
+</style>
+
+
+<h2>Players Onsite</h2>
+
+<table class="table table-sm">
+    <thead class="thead-dark">
+        <tr>
+            <th class="name">Player</th>
+            <th class="tier">Tier</th>
+            <th class="amt">Coin In</th>
+            <th class="amt">Coin Out</th>
+            <th class="amt">Actual Win</th>
+            <th class="amt">Theoretical Win</th>
+            <th class="amt">Comp Cost</th>
+            <th class="amt">Reinvestment</th>
+        </tr>
+    </thead>
+    @foreach(var p in Model.Players)
+    {
+    <tr class="@p.TierName.Replace(" ", "-").ToLower()">
+        <td class="name">@p.LastName, @p.FirstName </td>
+        @*<td class="club">@p.ClubLevelName</td>*@
+        <td class="tier">@p.TierName</td>
+        <td class="amt">@p.CoinIn.ToString("C0")</td>
+        <td class="amt">@p.CoinOut.ToString("C0")</td>
+        <td class="amt">@p.ActualWin.ToString("C0")</td>
+        <td class="amt">@p.TheoreticalWin.ToString("C0")</td>
+        <td class="amt">@p.Comps.ToString("C0")</td>
+        <td class="amt">@((p.Comps / p.TheoreticalWin).ToString("0.0%"))</td>
+    </tr>
+    }
+</table>

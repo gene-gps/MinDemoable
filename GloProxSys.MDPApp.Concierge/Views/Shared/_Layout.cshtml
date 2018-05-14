@@ -1,0 +1,95 @@
+﻿@model BasePageModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@Model.CasinoName</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/@(Model.CasinoTheme).css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <environment include="Development">
+    </environment>
+    <environment exclude="Development">
+    </environment>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="navbar-brand col-sm-3 col-md-2">
+            <img class="" src="https://s3.amazonaws.com/gps-app-resources/photos/@Model.CasinoLogo" />
+        </div>
+        <div class="d-none d-md-block">
+            <div class="navbar-text host-name">@Model.StaffName</div>
+        </div>
+        <div class="navbar-text right-block mt-2 mt-md-0">
+            <div id="clock"></div>
+            <div><a href="/account/login">Sign out</a></div>
+        </div>
+
+    </nav>
+    <div class="container-fluid staff-header">
+        <div class="btn-group btn-group-sm btn-group-toggle pull-right"  data-toggle="buttons">
+            <label class="btn btn-outline-secondary active">
+                <input type="radio" name="staff-status" id="is-active" autocomplete="off" checked> Active
+            </label>
+            <label class="btn btn-outline-secondary">
+                <input type="radio" name="staff-status" id="with-client" autocomplete="off"> With Client
+            </label>
+            <label class="btn btn-outline-secondary">
+                <input type="radio" name="staff-status" id="off-floor" autocomplete="off"> Off Floor
+            </label>
+        </div>
+    </div>
+
+    <div class="container-fluid body-content">
+        @RenderBody()
+    </div>
+
+
+
+
+
+    <script src="/libs/font-awesome.js"></script>
+    <script src="/libs/moment.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+    <environment include="Development">
+
+    </environment>
+    <environment exclude="Development">
+
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+
+    <script>
+        $(document).ready(function () {
+            $('#clock').html(moment().format('h:mm A'));
+            setInterval(function () {
+                $('#clock').html(moment().format('h:mm A'));
+            }, 60000);
+
+            $('.staff-header input').on('click', function (e) {
+                console.log(this.id);
+                if (this.id) {
+                    var status = '';
+                    switch(this.id) {
+                        case "is-active": status = 'Active'; break;
+                        case "with-client": status = 'With Client'; break;
+                        case "off-floor": status = 'Off Floor'; break;
+                    }
+                    $.post('/home/updatestaffstatus', {
+                        status: status
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

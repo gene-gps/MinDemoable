@@ -1,0 +1,15 @@
+﻿
+
+@import 'frame';
+@import 'index';
+
+
+.navbar.navbar-dark.bg-dark {
+    background-color: darkblue !important;
+}
+.navbar.navbar-dark {
+    .navbar-brand {
+        color: whitesmoke;
+    }
+}
+

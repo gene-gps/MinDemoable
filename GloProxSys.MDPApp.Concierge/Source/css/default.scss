@@ -1,0 +1,66 @@
+﻿
+@import 'frame';
+@import 'bounce';
+@import 'index';
+
+body {
+font-size:.8rem;
+}
+.navbar-brand img {
+    width: 55%;
+    margin-top: 25px;
+    margin-left: -25px;
+}
+
+.navbar .right-block {
+    margin-top: 0px !important;
+}
+
+@media only screen and (min-width : 992px) {
+    .navbar-brand  img {width: 120%; margin-top:30px;}
+}
+@media only screen and (max-width : 992px) {
+    .navbar-brand img {
+        width: 150%;
+        margin-top: 40px;
+    }
+    .navbar .right-block {
+        margin-top: 0px !important;
+    }
+}
+@media only screen and (max-width : 576px) {
+    .navbar-brand img {
+        width: 55%;
+        margin-top: 25px;
+        margin-left: -25px;
+    }
+    .navbar .right-block {
+        margin-top:0px !important;
+    }
+}
+
+@media only screen and (min-width : 1200px) {
+    .navbar-brand img {
+        width: 80%;
+        margin-top: 45px;
+    }
+}
+
+.player.Advantage {
+    h7.level {}
+}
+.player.Premium {
+    h7.level {
+        color: rebeccapurple;
+    }
+}
+.player.Supreme {
+    h7.level {
+        color: darkorange;
+    }
+}
+.player.Elite {
+    h7.level {
+        color: crimson;
+    }
+}

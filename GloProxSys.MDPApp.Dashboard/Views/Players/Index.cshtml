@@ -1,0 +1,87 @@
+﻿@model IQueryable<TierData>
+@{
+    ViewData["Title"] = "Players";
+}
+
+<style>
+    th, td {font-size:.9em;white-space:nowrap;}
+    th.amt, td.amt {text-align:right; padding-right:5px;}
+    th.pct, td.pct {text-align:right; padding-right:5px;}
+    td.bar {
+        width: 50%;
+    }
+
+    td.bar .bar-container {
+        position:relative;
+        height: 13px;
+        margin: 4px 0px;
+        width: 100%;
+        background-color: lightgrey;
+    }
+
+    td.bar .bar-container div.t-bar {
+        position:absolute;
+        height: 16px;
+        background-color: transparent;
+        border-right: 3px solid black;
+        margin-top:-2px;
+        z-index:10;
+    }
+    td.bar .bar-container div.bar {
+        position: absolute;
+        height: 13px;
+        background-color: tomato;
+    }
+    tr.above .bar-container div.bar {
+        background-color: darkgreen;
+    }
+    tr.above td.pct {
+        color: darkgreen;
+    }
+    tr.under .bar-container div.bar {
+        background-color: crimson;
+    }
+    tr.under td.pct {
+        color: crimson;
+    }
+</style>
+
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-md-6 col-lg-4">
+        <table class="table table-sm table-striped">
+            @{
+                //var max = Model.Max(x => Math.Max(x.Theoretical, x.Actual));
+                var max = 500000;
+            }
+            <thead class="thead-dark">
+                <tr>
+                    <th>Tier</th>
+                    <th class="amt">Theoretical</th>
+                    <th class="amt">Actual</th>
+                    <th class="pct d-md-none">%</th>
+                    <th class="d-none d-md-table-cell"></th>
+                </tr>
+            </thead>
+
+            @foreach (var t in Model)
+            {
+            <tr class="@(t.Actual/t.Theoretical > 1 ? "above" : "under")">
+                <td class="tier">@t.Tier</td>
+                <td class="amt">@t.Theoretical.ToString("$0,000")</td>
+                <td class="amt">@t.Actual.ToString("$0,000")</td>
+                <td class="pct d-md-none">@Math.Round(100 * t.Actual / t.Theoretical, 0).ToString()%</td>
+                <td class="d-none d-md-table-cell bar">
+                    <div class="bar-container">
+                        <div class="bar" style="width:@(100 * t.Actual/max)%;"></div>
+                        <div class="t-bar" style="width:@(100 * t.Theoretical/max)%;"></div>
+                    </div>
+                </td>
+            </tr>
+            }
+
+        </table>
+    </div>
+    </div>
+</div>

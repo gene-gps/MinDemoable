@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/@(ViewData["theme"]??"default").css">
+
+    <script src="/libs/font-awesome.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+</head>
+<body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">GloProxSys</a>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">Sign out</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-3 col-lg-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <div class="nav flex-column dashboard">
+                        <a class="nav-link @(IsActive("dashboard") ? "active" : "")" href="/dashboard">
+                            <i class="fa fa-pie-chart"></i>
+                            Dashboard
+                        </a>
+                    </div>
+                    <h5 class="sidebar-heading align-items-center">Offers</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("offers") ? "active" : "")" href="/offers">
+                                <i class="fa fa-line-chart"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("offers", "list") ? "active" : "")" href="/offers/list">
+                                <i class="fa fa-money"></i>
+                                List
+                            </a>
+                        </li>
+                    </ul>
+                    <h5 class="sidebar-heading align-items-center">Players</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("players") ? "active" : "")" href="/players">
+                                <i class="fa fa-pie-chart"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("players", "onsite") ? "active" : "")" href="/players/onsite">
+                                <i class="fa fa-map-pin"></i>
+                                On Site
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("players", "all") ? "active" : "")" href="/players/all">
+                                <i class="fa fa-users"></i>
+                                List
+                            </a>
+                        </li>
+                    </ul>
+                    <h5 class="sidebar-heading align-items-center">Concierge</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("concierge") ? "active" : "")" href="/concierge">
+                                <i class="fa fa-glass"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("concierge", "activity") ? "active" : "")" href="/concierge/activity">
+                                <i class="fa fa-comments"></i>
+                                Activity
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("concierge", "list") ? "active" : "")" href="/concierge/list">
+                                <i class="fa fa-cutlery"></i>
+                                List
+                            </a>
+                        </li>
+                    </ul>
+                    <h5 class="sidebar-heading align-items-center">Utilities</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link @(IsActive("users") ? "active" : "")" href="/users">
+                                <i class="fa fa-user-circle-o"></i>
+                                Users
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+    </body>
+</html>
+
+@functions  {
+    bool IsActive(string controller, string action = "index")
+    {
+        var rt_controller = this.ViewContext.RouteData.Values["controller"] as string;
+        var rt_action = this.ViewContext.RouteData.Values["action"] as string;
+
+        if ((controller ?? "").ToLower() == (rt_controller??"").ToLower())
+        {
+            if ((action ?? "").ToLower() == (rt_action ?? "").ToLower()) return true;
+        }
+        return false;
+    }
+}

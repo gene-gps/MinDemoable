@@ -1,0 +1,78 @@
+﻿@model HomePageModel;
+@{ 
+}
+
+<div class="row">
+    <div class="col-md-7 player-lists">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#watching" role="tab">Watched Players</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#onsite">Onsite Players</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#players">All Players</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="watching">
+                <div class="watching player-list">
+                    @await Html.PartialAsync("_PlayerList", Model.Players.Where(x => x.PlayerID % 4 == 0))
+                </div>
+            </div>
+            <div class="tab-pane" id="onsite">
+                <div class="player-list">
+                    @await Html.PartialAsync("_PlayerList", Model.Players)
+                </div>
+            </div>
+            <div class="tab-pane" id="players">
+                <h6>To-Do: Player Search</h6>
+            </div>
+        </div>
+        </div>
+
+        <div class="col-md-5 message-list">
+            <h4>Messages</h4>
+        </div>
+    </div>
+
+
+<div id="profile" class="modal fade" tabindex="-1">
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('.player-lists').on('click', '.icon-bar li.nav-item a.profile', function (e) {
+            $.get({ url: '/home/profile?id=' + $(this).data('player'), cache: false, headers: { 'X-Timezone-Offset': moment().utcOffset() } }).then(data => {
+                $('#profile').html(data).modal({});
+            });
+        });
+
+        $('#profile').on('keyup', '#add-note-content', function (e) {
+            $('#btn-add-note').toggleClass('disabled', !$(this).val());
+        });
+        $('#profile').on('click', '#btn-add-note', function (e) {
+            if ($(this).is('.disabled')) return;
+            var note = $('#add-note-content').val();
+            $.post('/home/addnote', {
+                player: $(this).data('player'),
+                note: note
+            }, function (data) {
+                var s = [];
+                if (data && data.length > 0) {
+                    $.each(data, function (i, n) {
+                        s.push('<li class="note">');
+                        s.push('<h7><span class="date">' + moment.utc(n.date).local().format('M/DD/YY h:mm A') + '</span> by ' + n.staffName + '</h7>');
+                        s.push('<div class="content">' + n.content + '</div>');
+                        s.push('</li>');
+                    })
+                    $('#note-list').html(s.join(''));
+                    $('#add-note-content').val('');
+                }
+            });
+        });
+
+    });
+</script>

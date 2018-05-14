@@ -1,0 +1,53 @@
+﻿@using GloProxSys.MDPApp.Models;
+@model IEnumerable<PlayerProfile>
+
+
+@foreach (var p in Model)
+{
+<div class="row player @((p.ClubLevelName??"").Replace(" ", ""))" style="width:100%;">
+    <div class="col-sm-2 px-2">
+        <h7 class="level">@p.ClubLevelName</h7>
+        <img style="width:100%;" src="https://s3.amazonaws.com/gps-app-resources/photos/player-@(p.CasinoID)-@(p.PlayerID).jpg" />
+    </div>
+    <div class="col-sm-9 @p.ClubLevelName">
+        <h5 class="title">@p.LastName, @p.FirstName</h5>
+        <ul class="details">
+        @if (!string.IsNullOrWhiteSpace(p.PreferredName))
+        {
+            <li><label>Preferred Name: </label> @p.PreferredName</li>
+        }
+            <li><label>Points: </label> @p.PointBalance</li>
+            <li><label>Theoretical: </label> $@p.TheoreticalWin.ToString("#,##0.00")</li>
+            <li><label>Actual: </label> $@p.ActualWin.ToString("#,##0.00")</li>
+        </ul>
+    </div>
+    <div class="col-sm-1 icons">
+
+        @if (p.Jackpot)
+        {
+            <h5 class="jackpot">
+                <i class="fa fa-trophy fa-bounce text-danger"></i>
+            </h5>
+        }
+
+
+        @if (p.PlayerID == 3)
+        {
+            <h5 class="message">
+                <i class="fa fa-commenting-o fa-bounce text-danger"></i>
+            </h5>
+        }
+
+    </div>
+    <div class="icon-bar row">
+        <div class="col-sm-3 tier"><span>@p.TierName</span></div>
+        <ul class="col-sm-9 nav justify-content-end">
+            <li class="nav-item"><a class="nav-link profile" data-player="@p.PlayerID"><i class="fa fa-user"></i></a></li>
+            <li class="nav-item"><a class="nav-link locate" data-player="@p.PlayerID"><i class="fa fa-map-marker"></i></a></li>
+            <li class="nav-item"><a class="nav-link message" data-player="@p.PlayerID"><i class="fa fa-comments"></i></a></li>
+            <li class="nav-item add-watch"><a class="nav-link"><i class="fa fa-eye"></i></a></li>
+            <li class="nav-item del-watch"><a class="nav-link"><i class="fa fa-eye-slash"></i></a></li>
+        </ul>
+    </div>
+</div>
+}

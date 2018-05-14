@@ -1,0 +1,17 @@
+﻿
+
+@import 'frame';
+
+.navbar.navbar-dark.bg-dark {
+    background-color: darkblue !important;
+}
+.navbar.navbar-dark {
+    .navbar-brand {
+        color: whitesmoke;
+    }
+}
+
+.sidebar .nav-link.active {
+    background-color: darkblue;
+    color:whitesmoke;
+}
