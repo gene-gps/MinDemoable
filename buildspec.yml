@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo Restore started on `date`
+      - pip install --upgrade awscli
+      - dotnet restore GloProxSys.MDPApp.Concierge/GloProxSys.MDPApp.Concierge.csproj
+  build:
+    commands:
+      - echo Build started on `date`
+      - dotnet publish -c release -o ./build_output GloProxSys.MDPApp.Concierge/GloProxSys.MDPApp.Concierge.csproj
+artifacts:
+  files:
+    - GloProxSys.MDPApp.Concierge/build_output/**/*
+    - scripts/**/*
+    - appspec.yml
